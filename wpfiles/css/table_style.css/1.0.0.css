@@ -1,0 +1,83 @@
+/* ===============================
+  File:  table_style.css 
+  Version: v1.0.0
+   =============================== */
+
+/* Общий стиль для таблиц  */
+.dynamic-table {
+ /*  width: 100%;*/
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+}
+
+/* Заголовки */
+.dynamic-table thead {
+    background-color: #4271FF;
+    color: white;
+   /*  margin: 0; Убираем внешние отступы */
+   /* padding: 0;  Убираем внутренние отступы */
+}
+
+/* Наведение на шапку*/
+.dynamic-table thead tr:hover {
+ background-color: #2D54FF; 
+}
+
+/* Наведение на строку */ 
+.dynamic-table tr:hover td {
+  background-color: #EDFFFF;
+}
+
+/* Числовые колонки (decimal + int) */
+.dynamic-table td.decimal-col,
+.dynamic-table td.int-col {
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums; /* одинаковая ширина цифр */
+}
+
+/* Минимальные ширины */
+.dynamic-table td.decimal-col,
+.dynamic-table th.decimal-col {
+  min-width: 90px;
+}
+
+.dynamic-table td.int-col,
+.dynamic-table th.int-col {
+  min-width: 70px;
+}
+
+/* Дата-колонки */
+.dynamic-table td.date-col,
+.dynamic-table th.date-col {
+  min-width: 110px;
+  text-align: center;
+}
+
+/* Скрыть стрелки сортировки */
+.dynamic-table  th.sorting::before,
+.dynamic-table  th.sorting::after,
+.dynamic-table  th.sorting_asc::before,
+.dynamic-table  th.sorting_asc::after,
+.dynamic-table  th.sorting_desc::before,
+.dynamic-table  th.sorting_desc::after {
+    display: none !important;
+}
+
+/* Унифицируем ширину выпадающих списков в DataTables
+При загрузке таблицы и при изменении значения <select> ширина всегда равна ширине ячейки.
+Короткие значения («Да», «Нет», «OK»)  больше не сжимают список.
+Длинные значения («Другое», «Согласовано», и т.д.) растягиваются ровно по ширине ячейки.
+*/
+table.dynamic-table td.select-col select {
+  width: auto;            /* ширина автоматически */ 
+  /*  width: 100%;         всегда занимает всю ширину ячейки */
+  min-width: 100px;     /* минимальная ширина (можно подогнать под дизайн) */
+  box-sizing: border-box;
+  padding: 2px 4px;
+}
+
+/* Чтобы выпадающий список не "прыгал" при смене значения */
+table.dynamic-table td.select-col {
+  white-space: nowrap; /* не переносить текст */
+}
